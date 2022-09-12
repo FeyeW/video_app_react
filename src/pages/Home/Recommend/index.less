@@ -19,6 +19,23 @@
             color: #fff;
         }
 
+        .iconMain {
+            width: 3rem;
+            height: 3rem;
+            border: 1px solid;
+            border-radius: 50%;
+            text-align: center;
+            position: absolute;
+            top: .4rem;
+            right: 1.3rem;
+            color: #fff;
+            transform: rotateZ(-10deg);
+        }
+
+        p {
+            margin: 0 !important;
+        }
+
         .main-footer {
             display: flex;
             margin: .3rem 0 .8rem 0;
@@ -46,5 +63,49 @@
         }
     }
 
+    hr {
+        color: rgb(193, 193, 193);
+        margin-left: -1rem;
+        border: none;
+        border-top: 1px solid;
+        padding-bottom: .5rem;
 
+    }
+
+    .content-card {
+        display: flex;
+        margin: .5rem 0;
+        border: 1px solid rgb(193, 193, 193);
+        border-radius: .3rem;
+        width: 21.5rem;
+        margin-left: .5rem;
+
+        .card-left {
+            img {
+                width: 10rem;
+                height: 5rem;
+            }
+        }
+
+        .card-right {
+            width: 12rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            .card-right-top {
+                margin: .2rem
+            }
+
+            .card-right-bottom {
+                display: flex;
+                justify-content: space-between;
+                font-size: .3rem;
+                margin-top: 1rem;
+                margin: .2rem;
+
+                p {}
+            }
+        }
+    }
 }
