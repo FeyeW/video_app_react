@@ -4,14 +4,12 @@ import { Navigate } from 'react-router-dom'
 //Home组件和其子组件
 import Home from '../pages/Home'
 import Recommend from '../pages/Home/Recommend'
-import News from '../pages/Home/News'
-import Picture from '../pages/Home/Picture'
 import Texts from '../pages/Home/Texts'
+import Attention from '../pages/Home/Attention'
 
-
-import Attention from '../pages/Attention'
+import Square from '../pages/Square'
 import Add from '../pages/Add'
-import Message from '../pages/Message'
+import Find from '../pages/Find'
 import About from '../pages/About'
 
 
@@ -22,34 +20,30 @@ export default [
         element: <Home />,
         children: [
             {
-                path: 'news',
-                element: <News />
+                path: 'recommend',
+                element: <Recommend />
             },
             {
-                path: 'picture',
-                element: <Picture />
+                path: 'attention',
+                element: <Attention />
             },
             {
                 path: 'texts',
                 element: <Texts />
             },
-            {
-                path: 'recommend',
-                element: <Recommend />
-            }
         ]
     },
     {
-        path: 'attention',
-        element: <Attention />
+        path: 'square',
+        element: <Square />
     },
     {
         path: 'add',
         element: <Add />
     },
     {
-        path: 'message',
-        element: <Message />
+        path: 'find',
+        element: <Find />
     },
     {
         path: 'about',

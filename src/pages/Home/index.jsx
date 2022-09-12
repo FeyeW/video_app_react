@@ -16,12 +16,11 @@ export default function Home() {
       <div className="header">
         <NavLink to=""><i className='iconfont icon-jiahao'></i></NavLink>
         <NavLink className={getActive} to="recommend">推荐</NavLink>
-        <NavLink className={getActive} to="news">新鲜</NavLink>
-        <NavLink className={getActive} to="picture">纯文</NavLink>
-        <NavLink className={getActive} to="texts">趣图</NavLink>
-        <NavLink to=""> <i className='iconfont icon-sousuo'></i></NavLink>
+        <NavLink className={getActive} to="attention">关注</NavLink>
+        <NavLink className={getActive} to="texts">日报</NavLink>
+        <NavLink to=""> <i className='iconfont icon-xiaoxi'></i></NavLink>
       </div>
-      <div>
+      <div className='content'>
         {<Outlet />}
       </div>
 

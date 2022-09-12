@@ -3,13 +3,32 @@
     scroll-behavior: smooth;
 }
 
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    color: black;
+}
+
 .bottom {
     width: 100%;
     position: fixed;
-    bottom: 1rem;
+    bottom: 0rem;
     left: 0;
     display: flex;
     justify-content: space-around;
+    background: #fff;
+    padding: .5rem 0;
+    z-index: 9999;
 
-    i {}
+    i {
+        font-size: 1.6rem;
+        line-height: 1.3rem;
+    }
+}
+
+.Active {
+    color: #a4a4a4 !important;
 }
