@@ -8,9 +8,10 @@ import Texts from '../pages/Home/Texts'
 import Attention from '../pages/Home/Attention'
 
 import Square from '../pages/Square'
-import Add from '../pages/Add'
+import Add from '../pages/Details'
 import Find from '../pages/Find'
 import About from '../pages/About'
+import Details from '../pages/Details'
 
 
 
@@ -48,6 +49,10 @@ export default [
     {
         path: 'about',
         element: <About />
+    },
+    {
+        path: 'details',
+        element: <Details />
     },
 
     {

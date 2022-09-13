@@ -1,13 +1,15 @@
 import React, { useEffect, useState, Fragment, useRef } from 'react'
-import ReactDOM from "react-dom"
+import { NavLink, useNavigate } from 'react-router-dom'
 import './index.less'
 
 import { getRecommentList, getCardList } from '../../../api'
 
 
+
 export default function Recomment() {
 
   const player = useRef()
+  const navigate = useNavigate()
 
 
   //开眼编辑精选
@@ -39,6 +41,8 @@ export default function Recomment() {
   let handlePlay = () => {
     // player.current.play()
     setIcon(true)
+    navigate('/details')
+
   }
   //监听video播放
   let play = (event) => {
@@ -83,7 +87,7 @@ export default function Recomment() {
                 </div> :
                 <div>
                   <img src={item.data.content.data.cover.detail} />
-                  <i className='iconfont icon-bofang inconVideo'></i>
+                  <NavLink to={{ pathname: '/details' }} className='iconfont icon-bofang inconVideo'></NavLink>
                   <div className='iconMain'><p>开眼</p><p>精选</p></div>
                 </div>
 
