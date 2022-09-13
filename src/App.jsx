@@ -21,7 +21,7 @@ export default function App() {
   return (
     <div className='main'>
       <div className="bottom">
-        <NavLink className={getActive} to="/home/recommend">首页</NavLink>
+        <NavLink className={getActive} to="">首页</NavLink>
         <NavLink className={getActive} to="square">广场</NavLink>
         <NavLink className={getActive} to="add"><i className="iconfont icon-jia"></i></NavLink>
         <NavLink className={getActive} to="find">发现</NavLink>
