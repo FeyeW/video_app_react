@@ -4,11 +4,18 @@ import './index.less'
 
 import { getRecommentList, getCardList } from '../../../api'
 
-
+/* 
+1.useRecoilState拿到值并拿来设置数据（类似useState)
+2.useSetRecoilState对值进行设置，而又不进行展示
+*/
+import { useRecoilState, useSetRecoilState } from "recoil"
+import { videoState } from '../../../Recoil/appState'
 
 export default function Recomment() {
 
+  //获取元素的dom操作
   const player = useRef()
+  //v5的useHistory=》v6useNavigate
   const navigate = useNavigate()
 
 
@@ -18,11 +25,19 @@ export default function Recomment() {
   let [recommentCard, setCard] = useState([]);
   //设置是否为播放时的icon
   let [Icon, setIcon] = useState(false)
+  //拿到atom
+  let setData = useSetRecoilState(videoState)
+
 
   //获取数据
   async function funData() {
     let resRe = await getRecommentList()
     setEye(resRe.data.itemList[0].data.itemList)
+    setData(resRe.data.itemList[0].data.itemList)
+    console.log(resRe.data.itemList[0].data.itemList)
+
+    // console.log(recommentEye[0].data.content.data.playUrl)
+
 
     let resCa = await getCardList()
     setCard(resCa.data.itemList.filter(item => {
@@ -38,22 +53,28 @@ export default function Recomment() {
   }
 
   //点击icon播放
-  let handlePlay = () => {
-    // player.current.play()
-    setIcon(true)
-    navigate('/details')
-
+  let handlePlay = (index) => {
+    console.log(index)
+    //函数式路由跳转
+    navigate('/details',
+      {
+        replace: true,
+        state: {
+          index: index
+        }
+      }
+    )
   }
   //监听video播放
   let play = (event) => {
     setIcon(true)
   }
+  //监听video暂停
   let pause = () => {
     setIcon(false)
   }
   //发起请求
   useEffect(() => {
-    // handlePlay()
     funData()
     return () => {
 
@@ -62,7 +83,7 @@ export default function Recomment() {
 
 
   return (
-    <div className='main'>
+    <div className='Recommend'>
       {
         recommentEye.map((item, index) => {
           return (
@@ -73,21 +94,21 @@ export default function Recomment() {
               {/* 判断是否为第一个视频 */}
               {index === 0 ?
                 <div >
-                  <video ref={player} controls autoPlay muted width="345" onPlay={play} onPause={pause}>
-                    <source src="http://baobab.kaiyanapp.com/api/v1/playUrl?vid=313543&resourceType=video&editionType=default&source=aliyun&playUrlType=url_oss&udid=&f=iphone&u=&vc=0"
+                  <video ref={player} controls autoPlay muted width="345" onPlay={play} onPause={pause} >
+                    <source src={recommentEye[0].data.content.data.playUrl}
                       type="video/webm" />
                   </video>
                   {
-                    Icon == true ? '' :
+                    Icon === true ? '' :
                       <Fragment>
-                        <i onClick={handlePlay} className='iconfont icon-bofang inconVideo'></i>
+                        <i onClick={() => handlePlay(index)} className='iconfont icon-bofang inconVideo'></i>
                         <div className='iconMain'><p>开眼</p><p>精选</p></div>
                       </Fragment>
                   }
                 </div> :
                 <div>
                   <img src={item.data.content.data.cover.detail} />
-                  <NavLink to={{ pathname: '/details' }} className='iconfont icon-bofang inconVideo'></NavLink>
+                  <i onClick={() => handlePlay(index)} className='iconfont icon-bofang inconVideo'></i>
                   <div className='iconMain'><p>开眼</p><p>精选</p></div>
                 </div>
 

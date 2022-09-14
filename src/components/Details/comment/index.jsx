@@ -1,14 +1,23 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import './index.less'
 
-export default function Comment() {
+export default function Comment(props) {
+  const { title, description, consumption, collected,tags } = props
+
+  useEffect(() => {
+    // console.log(title)
+    return () => {
+
+    };
+  }, []);
   return (
-    <div className='content'>
-      1
-      <div className="content-top">
+    <div className='Comment'>
+      <h4></h4>
+      <div className="comment-top">
         <p></p>
         <i></i>
       </div>
-      <div className="content-users">
+      <div className="comment-users">
         <div className="user-left"></div>
         <div className="user-right">
           <p></p>
@@ -18,7 +27,7 @@ export default function Comment() {
           <i></i>
         </div>
       </div>
-      <div className="content-bottom">
+      <div className="comment-bottom">
         <input type="text" />
         <i></i>
         <i></i>

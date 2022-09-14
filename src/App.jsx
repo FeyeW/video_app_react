@@ -19,7 +19,7 @@ export default function App() {
 
 
   return (
-    <div className='main'>
+    <div className='App'>
       <div className="bottom">
         <NavLink className={getActive} to="">首页</NavLink>
         <NavLink className={getActive} to="square">广场</NavLink>

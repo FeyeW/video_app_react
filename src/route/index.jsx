@@ -11,8 +11,8 @@ import Square from '../pages/Square'
 import Add from '../pages/Details'
 import Find from '../pages/Find'
 import About from '../pages/About'
-import Details from '../pages/Details'
 
+import Details from '../pages/Details'
 
 
 export default [
@@ -52,7 +52,7 @@ export default [
     },
     {
         path: 'details',
-        element: <Details />
+        element: <Details />,
     },
 
     {

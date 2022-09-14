@@ -11,7 +11,7 @@ export default defineConfig({
 
     proxy: {
       "/api": {
-        target: " http://baobab.kaiyanapp.com/api/v5",
+        target: " http://baobab.kaiyanapp.com/api",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
       }
