@@ -15,7 +15,8 @@
     "react-dom": "^18.2.0",
     "react-player": "^2.10.1",
     "react-router-dom": "^6.3.0",
-    "recoil": "^0.7.5"
+    "recoil": "^0.7.5",
+    "recoil-persist": "^4.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.17",

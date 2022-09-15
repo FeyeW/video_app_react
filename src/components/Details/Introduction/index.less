@@ -1,5 +1,7 @@
 .Introduction {
+    margin-top: 17rem;
     padding: 1rem;
+    color: #fff;
 
     h4 {
         color: #fff;
@@ -11,7 +13,8 @@
     }
 
     .introduction-text {
-
+        position: relative;
+        padding-top: .5rem;
 
         .introduction-tags {
             font-size: .6rem;
@@ -23,20 +26,53 @@
             font-size: .8rem;
             color: #ccc;
         }
+
+        .isShow {
+            height: 4.8rem;
+            overflow: visible;
+        }
+
+        .showHidden {
+            position: relative;
+            height: 4rem;
+            z-index: 1;
+            background: black;
+            box-shadow: -2px 0px 10px 3px black;
+        }
+
+        .showIcon {
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            background: #666;
+            text-align: center;
+            line-height: .9rem;
+            position: absolute;
+            right: .6rem;
+            bottom: 4rem;
+            z-index: 99;
+
+            i {
+                font-size: .6rem;
+            }
+        }
     }
 
     .introduction-icon {
         display: flex;
         justify-content: space-between;
-        padding: .5rem 0;
+        padding-bottom: .5rem;
         text-align: center;
+        color: #fff;
 
         i {
             font-size: 1.3rem;
             font-weight: 800;
+            color: #fff;
         }
 
         p {
+
             display: block !important;
         }
     }
@@ -49,4 +85,58 @@
     }
 
     .introduction-extend {}
+}
+
+.down {
+    animation: 0.3s ease-in alternate downRotate;
+    transform: rotateZ(180deg);
+}
+
+.up {
+    animation: 0.3s ease-in alternate upRotate;
+    transform: rotateZ(360deg);
+}
+
+@keyframes downRotate {
+    0% {
+        transform: rotateZ(10deg);
+    }
+
+    25% {
+        transform: rotateZ(70deg);
+    }
+
+    50% {
+        transform: rotateZ(140deg);
+    }
+
+    75% {
+        transform: rotateZ(180deg);
+    }
+
+    100% {
+        transform: rotateZ(200deg);
+    }
+}
+
+@keyframes upRotate {
+    0% {
+        transform: rotateZ(190deg);
+    }
+
+    25% {
+        transform: rotateZ(250deg);
+    }
+
+    50% {
+        transform: rotateZ(320deg);
+    }
+
+    75% {
+        transform: rotateZ(360deg);
+    }
+
+    100% {
+        transform: rotateZ(380deg);
+    }
 }

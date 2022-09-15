@@ -13,6 +13,7 @@
             img {
                 width: 2rem;
                 border-radius: 50%;
+                margin-left: 2rem;
             }
 
             p {
@@ -22,13 +23,38 @@
             }
         }
 
+
+
         i {
             font-size: 1.3rem;
             font-weight: 800;
+            z-index: 9999;
+        }
+    }
+
+    .playVideo {
+        i {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2rem;
+            color: #fff;
+            z-index: 99;
+        }
+
+        .icon-hanhan-01 {
+            left: 30% !important;
+        }
+
+        .icon-hanhan-011 {
+            left: 70% !important;
         }
     }
 
     video {
+        height: 200px;
+
         source {}
     }
 
@@ -42,6 +68,15 @@
             padding: .2rem 0;
         }
     }
+}
+
+.Details-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    background: black;
+    width: 23.5rem;
 }
 
 .deIsActive {

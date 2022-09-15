@@ -1,20 +1,39 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import './index.less'
 
-import VideoRe from '../videoRe'
+import VideoRe from './videoRe'
 
 export default function Introduction(props) {
-  const { title, description, consumption, collected, tags } = props
+  //  console.log(props)
+  let { title, description, consumption, tags, recommentCard } = props
 
-  let number = parseInt(Math.random() * 10 - 1)
-  //  console.log(tags[number - 1].name)
+  let [iconShow, setShow] = useState(false)
+  function handleHidden(value) {
+    setShow(value)
+  }
+  useEffect(() => {
 
+    return () => {
+
+    };
+  },);
   return (
     <div className="Introduction">
       <div className='introduction-text'>
         <h4>{title}</h4>
-        <p className='introduction-tags'>#{tags[number].name} #{tags[number - 1].name}</p>
-        <p className='introduction-text'>{description}</p>
+        {tags[1].name !== '' ?
+          <p className='introduction-tags'>#{tags[0].name} #{tags[1].name}</p>
+          : ''
+        }
+        <p className={iconShow == false ? 'introduction-text isShow' : 'introduction-text'}>{description}</p>
+        <div className='showHidden'></div>
+        <div className={iconShow == false ? 'showIcon up' : 'showIcon down'}>
+          <i onClick={() => handleHidden(!iconShow)}
+            className='iconfont icon-xiangxia'></i>
+          {/*           <i onClick={() => handleHidden(false)} className='iconfont icon-xiangshang'></i> */}
+        </div>
+
+
       </div>
       <div className='introduction-icon'>
         <div>
@@ -40,7 +59,7 @@ export default function Introduction(props) {
       </div>
       <hr />
       <div className="introduction-extend">
-        <VideoRe />
+        <VideoRe recommentCard={recommentCard} />
       </div>
     </div>
   )

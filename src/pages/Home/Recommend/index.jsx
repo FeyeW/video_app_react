@@ -3,6 +3,7 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import './index.less'
 
 import { getRecommentList, getCardList } from '../../../api'
+import { getTime } from '../../../ulits'
 
 /* 
 1.useRecoilState拿到值并拿来设置数据（类似useState)
@@ -34,7 +35,7 @@ export default function Recomment() {
     let resRe = await getRecommentList()
     setEye(resRe.data.itemList[0].data.itemList)
     setData(resRe.data.itemList[0].data.itemList)
-    console.log(resRe.data.itemList[0].data.itemList)
+    console.log(recommentEye)
 
     // console.log(recommentEye[0].data.content.data.playUrl)
 
@@ -45,16 +46,10 @@ export default function Recomment() {
     }))
   }
 
-  //计算播放时长
-  let getTime = (time) => {
-    let min = parseInt(time / 60) > 10 ? parseInt(time / 60) : '0' + parseInt(time / 60)
-    let se = time - (parseInt(time / 60) * 60) > 10 ? (time - parseInt(time / 60) * 60) : '0' + (time - parseInt(time / 60) * 60)
-    return min + ':' + se
-  }
+
 
   //点击icon播放
   let handlePlay = (index) => {
-    console.log(index)
     //函数式路由跳转
     navigate('/details',
       {
