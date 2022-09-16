@@ -13,6 +13,14 @@ export function getCardList() {
 export function getVideoClass(videoId) {
     return request.get(`/v4/video/related?id=${videoId}`)
 }
+//获取关注的内容
+export function getAttention() {
+    return request.get('/v5/community/tab/follow')
+}
+//获取日报的内容
+export function getText() {
+    return request.get('/v5/index/tab/feed')
+}
 
 
 
