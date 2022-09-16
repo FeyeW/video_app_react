@@ -26,7 +26,7 @@ export default function Introduction(props) {
           : ''
         }
         <p className={iconShow == false ? 'introduction-text isShow' : 'introduction-text'}>{description}</p>
-        <div className='showHidden'></div>
+        <div className={iconShow == false ? 'showHidden ' : 'showHidden hidden'}></div>
         <div className={iconShow == false ? 'showIcon up' : 'showIcon down'}>
           <i onClick={() => handleHidden(!iconShow)}
             className='iconfont icon-xiangxia'></i>

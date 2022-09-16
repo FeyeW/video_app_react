@@ -3,6 +3,8 @@ import './index.less'
 
 import { NavLink, Outlet } from 'react-router-dom';
 
+import Footer from '../../components/Footer';
+
 export default function Home() {
 
   //函数式判断NavLink是否被激活
@@ -23,7 +25,7 @@ export default function Home() {
       <div className='content'>
         {<Outlet />}
       </div>
-
+      <Footer />
     </div>
   )
 }

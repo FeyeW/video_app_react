@@ -2,20 +2,17 @@ import React, { useEffect } from 'react'
 import './index.less'
 
 export default function Comment(props) {
-  const { title, description, consumption, collected,tags } = props
-
+  const { consumption } = props
   useEffect(() => {
-    // console.log(title)
     return () => {
 
     };
   }, []);
   return (
     <div className='Comment'>
-      <h4></h4>
       <div className="comment-top">
-        <p></p>
-        <i></i>
+        <p>最新评论</p>
+        <i className='iconfont icon-liebiao2'>&nbsp;按热度</i>
       </div>
       <div className="comment-users">
         <div className="user-left"></div>
@@ -28,10 +25,16 @@ export default function Comment(props) {
         </div>
       </div>
       <div className="comment-bottom">
-        <input type="text" />
-        <i></i>
-        <i></i>
-        <i></i>
+        <input placeholder='聊一聊...' type="text" />
+        <i className='iconfont icon-dianzan'>
+          <p>{consumption.collectionCount}</p>
+
+        </i>
+        <i className='iconfont icon-shoucang1'>
+          <p>{consumption.shareCount}</p></i>
+        <i className='iconfont icon-pinglun1'>
+          <p>{consumption.realCollectionCount}</p>
+        </i>
       </div>
     </div>
   )

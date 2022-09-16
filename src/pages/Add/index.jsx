@@ -1,7 +1,10 @@
 import React from 'react'
+import Footer from '../../components/Footer'
 
 export default function Add() {
   return (
-    <div>Add</div>
+    <div>
+      <Footer />
+    </div>
   )
 }

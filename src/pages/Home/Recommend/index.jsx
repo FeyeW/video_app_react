@@ -60,6 +60,7 @@ export default function Recomment() {
       }
     )
   }
+
   //监听video播放
   let play = (event) => {
     setIcon(true)
@@ -89,7 +90,7 @@ export default function Recomment() {
               {/* 判断是否为第一个视频 */}
               {index === 0 ?
                 <div >
-                  <video ref={player} controls autoPlay muted width="345" onPlay={play} onPause={pause} >
+                  <video ref={player} controls autoPlay muted width="100%" onPlay={play} onPause={pause} >
                     <source src={recommentEye[0].data.content.data.playUrl}
                       type="video/webm" />
                   </video>
@@ -134,7 +135,7 @@ export default function Recomment() {
             <div className="content-card" key={index}>
               <div className="card-left">
                 <img src={item.data.cover.detail} alt="" />
-                <i className='iconfont icon-bofang inconVideo'></i>
+                <i style={{ color: '#fff' }} onClick={() => handlePlay(index)} className='iconfont icon-bofang inconVideo'></i>
               </div>
               <div className="card-right">
                 <div className="card-right-top">

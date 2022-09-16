@@ -2,18 +2,16 @@
     background: black;
 
     .Details-top {
-        padding: .5rem;
+        padding: .5rem 1rem;
         display: flex;
-        justify-content: space-between;
         color: #fff;
 
         .top-author {
-            margin-left: -11rem;
+            margin-left: 1rem;
 
             img {
                 width: 2rem;
                 border-radius: 50%;
-                margin-left: 2rem;
             }
 
             p {
@@ -23,6 +21,10 @@
             }
         }
 
+        .icon-jia {
+            position: absolute;
+            right: 1rem;
+        }
 
 
         i {
@@ -53,7 +55,6 @@
     }
 
     video {
-        height: 200px;
 
         source {}
     }
@@ -68,17 +69,33 @@
             padding: .2rem 0;
         }
     }
+
+    hr {
+        border: .5px solid #666;
+    }
 }
 
 .Details-header {
-    position: fixed;
+    position: sticky;
     top: 0;
     left: 0;
     z-index: 999;
     background: black;
-    width: 23.5rem;
+    width: 100%;
 }
 
 .deIsActive {
     border-bottom: 1px solid #fff;
+}
+
+video::-webkit-media-controls-play-button {
+    display: none;
+}
+
+video::-webkit-media-controls-mute-button {
+    display: none;
+}
+
+video::-webkit-media-controls-timeline {
+    padding: 0 !important;
 }

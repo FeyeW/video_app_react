@@ -1,17 +1,22 @@
 .Comment {
     color: #fff;
 
-    h4 {
-        color: #fff;
-    }
 
     .comment-top {
+        display: flex;
+        justify-content: space-between;
+        padding: 1rem;
+
         p {}
 
-        i {}
+        i {
+            font-weight: 800;
+        }
     }
 
     .comment-users {
+        padding: 1rem;
+
         .user-left {}
 
         .user-right {
@@ -24,8 +29,35 @@
     }
 
     .comment-bottom {
-        input {}
+        position: sticky;
+        bottom: 0;
+        left: 0;
+        height: 3rem;
+        background: #2a2a2a;
+        display: flex;
+        justify-content: space-around;
 
-        i {}
+        input {
+            outline: none;
+            background: black;
+            border: none;
+            border-radius: .5rem;
+            height: 1.6rem;
+            margin: .63rem;
+            margin-left: 0;
+            width: 12rem;
+            text-indent: 1rem;
+        }
+
+        i {
+            font-size: 1.2rem;
+            line-height: 2.8rem;
+
+            p {
+                display: inline;
+                font-size: .6rem;
+                padding: 0 .3rem;
+            }
+        }
     }
 }

@@ -13,11 +13,9 @@ export default function videoRe(props) {
   const { recommentCard } = props
 
   let getDetails = useRecoilValue(videoState)
-  console.log(getDetails.length)
-  console.log(recommentCard.length)
 
- 
-  
+
+
   let handlePlay = (index) => {
     navigate('/details',
       {
@@ -28,6 +26,7 @@ export default function videoRe(props) {
       }
     )
   }
+  
   useEffect(() => {
 
     return () => {

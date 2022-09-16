@@ -19,7 +19,7 @@ export default function Details() {
   let getDetails = useRecoilValue(videoState)
   let setDeatails = useSetRecoilState(videoState)
 
-  let [isActive, setActive] = useState(true)
+
   const { state: { index } } = useLocation()
 
   //获取元素的dom操作
@@ -41,6 +41,7 @@ export default function Details() {
 
   }
   //激活样式
+  let [isActive, setActive] = useState(true)
   let handleActive = (value) => {
     setActive(value)
   }
@@ -48,19 +49,36 @@ export default function Details() {
     navigate(-1)
   }
 
+  //播放暂停点击
   let [isPlay, setPlay] = useState(true)
+  //设置显示icon
+  let [isIcon, setIcon] = useState(true)
+  let time = ''
   let handlePlay = (value) => {
     value == false ? player.current.play() : player.current.pause()
     setPlay(value)
-    console.log(player.current.currentTime)
+    if (value == false) {
+      clearTimeout(time)
+      time = setTimeout(() => {
+        setIcon(false)
+      }, 1000);
+    }
   }
+  //进度条加10秒
   function handleEnter() {
-    player.current.currentTime += 4
-    console.log(player.current.currentTime)
+    player.current.currentTime += 10
   }
+
   function focus() {
-    console.log('123')
+    setIcon(true)
+    if (isPlay == false) {
+      clearTimeout(time)
+      time = setTimeout(() => {
+        setIcon(false)
+      }, 3000);
+    }
   }
+
   useEffect(() => {
     getClass()
     return () => {
@@ -69,7 +87,7 @@ export default function Details() {
   }, []);
 
   return (
-    <div className='Details' >
+    <div className='Details' onFocus={focus}>
       <div className='Details-header' >
         <div className="Details-top">
           <i onClick={back} className='iconfont icon-fanhui'></i>
@@ -90,10 +108,16 @@ export default function Details() {
           <i className='iconfont icon-jia'></i>
         </div>
         <div className='playVideo' style={{ position: 'relative' }} >
-          <i className={isPlay ? 'iconfont icon-bofang' : 'iconfont icon-zanting'} onClick={() => handlePlay(!isPlay)}></i>
-          <i className='iconfont icon-hanhan-011' onClick={handleEnter}></i>
-          <video ref={player} controls autoPlay width='100%'>
-            <source onFocus={focus} src={index < 10 ? getDetails[index].data.content.data.playUrl : getDetails[index].data.playUrl}
+          {
+            isIcon ?
+              <div>
+                <i className={isPlay ? 'iconfont icon-bofang' : 'iconfont icon-zanting'} onClick={() => handlePlay(!isPlay)}></i>
+                <i className='iconfont icon-hanhan-011' onClick={handleEnter}></i>
+              </div> : ''
+
+          }
+          <video ref={player} controls autoPlay width='100%' >
+            <source src={index < 10 ? getDetails[index].data.content.data.playUrl : getDetails[index].data.playUrl}
               type="video/webm" />
           </video>
         </div>
@@ -102,16 +126,21 @@ export default function Details() {
           <p onClick={() => handleActive(true)} className={isActive == true ? 'deIsActive' : ''}>简介</p>
           <p onClick={() => handleActive(false)} className={isActive == true ? '' : 'deIsActive'}>评论</p>
         </div>
+        <hr />
       </div>
+      <Fragment>
+        {
+          isActive ? <Introduction
+            title={index < 10 ? getDetails[index].data.content.data.title : getDetails[index].data.title}
+            description={index < 10 ? getDetails[index].data.content.data.description : getDetails[index].data.description}
+            consumption={index < 10 ? getDetails[index].data.content.data.consumption : getDetails[index].data.consumption}
+            tags={index < 10 ? getDetails[index].data.content.data.tags : getDetails[index].data.tags}
+            collected={index < 10 ? getDetails[index].data.content.data.collected : getDetails[index].data.collected}
+            recommentCard={recommentCard}
+          /> : <Comment consumption={index < 10 ? getDetails[index].data.content.data.consumption : getDetails[index].data.consumption} />
+        }
+      </Fragment>
 
-      <Introduction
-        title={index < 10 ? getDetails[index].data.content.data.title : getDetails[index].data.title}
-        description={index < 10 ? getDetails[index].data.content.data.description : getDetails[index].data.description}
-        consumption={index < 10 ? getDetails[index].data.content.data.consumption : getDetails[index].data.consumption}
-        tags={index < 10 ? getDetails[index].data.content.data.tags : getDetails[index].data.tags}
-        collected={index < 10 ? getDetails[index].data.content.data.collected : getDetails[index].data.collected}
-        recommentCard={recommentCard}
-      />
     </div>
   )
 }

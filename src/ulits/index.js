@@ -3,3 +3,4 @@ export function getTime(time) {
   let se = time - (parseInt(time / 60) * 60) > 10 ? (time - parseInt(time / 60) * 60) : '0' + (time - parseInt(time / 60) * 60)
   return min + ':' + se
 }
+
