@@ -21,6 +21,10 @@ export function getAttention() {
 export function getText() {
     return request.get('/v5/index/tab/feed')
 }
+//获取广场的内容
+export function getSquare() {
+    return request.get('/v5/index/tab/ugcSelected')
+}
 
 
 
