@@ -13,6 +13,7 @@ import Find from '../pages/Find'
 import About from '../pages/About'
 
 import Details from '../pages/Details'
+import Search from 'antd/lib/transfer/search'
 
 
 export default [
@@ -53,6 +54,10 @@ export default [
     {
         path: 'details',
         element: <Details />,
+    },
+    {
+        path: 'search',
+        element: <Search />
     },
 
     {

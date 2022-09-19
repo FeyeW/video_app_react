@@ -40,7 +40,7 @@ export default function Square() {
   return (
     <div className='Square'>
       <div className="Square-header">
-        <NavLink to=""><i className='iconfont icon-jiahao'></i></NavLink>
+        <NavLink to={{ pathname: '/search' }}><i className='iconfont icon-sousuo'></i></NavLink>
         <p>eqepetizer</p>
         <NavLink to=""> <i className='iconfont icon-xiaoxi'></i></NavLink>
       </div>
