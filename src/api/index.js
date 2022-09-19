@@ -26,6 +26,11 @@ export function getSquare() {
     return request.get('/v5/index/tab/ugcSelected')
 }
 
+//获取分类
+export function getClass() {
+    return request.get(`/v5/index/tab/list`)
+}
+
 
 
 

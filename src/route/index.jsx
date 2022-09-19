@@ -8,7 +8,7 @@ import Texts from '../pages/Home/Texts'
 import Attention from '../pages/Home/Attention'
 
 import Square from '../pages/Square'
-import Add from '../pages/Details'
+import Add from '../pages/Add'
 import Find from '../pages/Find'
 import About from '../pages/About'
 

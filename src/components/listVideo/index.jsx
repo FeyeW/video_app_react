@@ -5,6 +5,10 @@ import { handleTime } from '../../ulits'
 
 export default function listVideo(props) {
   const { listData, name } = props
+  let [isAcitive, setAcitive] = useState(false)
+  function handleActive() {
+    setAcitive(!isAcitive)
+  }
   return (
     <div className='listVideo'>
       <hr />
@@ -21,10 +25,12 @@ export default function listVideo(props) {
                 <i className='iconfont icon-jia-fangkuang'></i>
               </div>
               <div className="listVideo-video">
-                <i className='iconfont icon-bofang'></i>
-                <img src={item.data.content.data.cover.detail} alt="" />
-                <p>{item.data.content.data.description}</p>
-                <p></p>
+                <div style={{ position: 'relative' }}>
+                  <i className='iconfont icon-bofang'></i>
+                  <img src={item.data.content.data.cover.detail} alt="" />
+                </div>
+                <p className={isAcitive ? '' : 'isActive'}>{item.data.content.data.description}</p>
+                <h5 onClick={handleActive}>{isAcitive ? '收起' : '展开'}</h5>
               </div>
               <div className="listVideo-bottom">
                 <div style={{ display: 'flex' }}>

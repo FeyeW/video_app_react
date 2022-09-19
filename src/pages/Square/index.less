@@ -54,7 +54,14 @@
             margin-left: .8rem;
             height: 1rem;
             font-weight: 400;
-            margin-bottom: none !important
+            margin-bottom: none !important;
+            display: -webkit-box;
+            overflow: hidden;
+            /*超出隐藏*/
+            text-overflow: ellipsis;
+            /*隐藏后添加省略号*/
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 1;
         }
 
         .card-user {
