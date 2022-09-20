@@ -31,9 +31,12 @@ export function getClass() {
     return request.get(`/v5/index/tab/list`)
 }
 //获取搜索关键词
-export function getHotTexts()
-{
+export function getHotTexts() {
     return request.get(`/v3/queries/hot`)
+}
+//获取搜索关键字
+export function getSearch(value) {
+    return request.get(`/v3/search?query=${value}`)
 }
 
 

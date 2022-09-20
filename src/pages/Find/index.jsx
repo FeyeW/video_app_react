@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react'
+import React, { Fragment, useEffect, useState, useRef } from 'react'
 import './index.less'
 
 
@@ -56,7 +56,7 @@ export default function Find() {
   return (
     <div className='Find'>
       <div className="Find-header">
-        <input onFocus={focus} type="text" placeholder='搜索视频，作者，用户及标签' />
+        <input  onFocus={focus} type="text" placeholder='搜索视频，作者，用户及标签' />
         <i className='iconfont icon-xiaoxi'></i>
       </div>
       <div className="Find-class">

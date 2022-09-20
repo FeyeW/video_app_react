@@ -6,8 +6,10 @@ import { handleTime } from '../../ulits'
 export default function listVideo(props) {
   const { listData, name } = props
   let [isAcitive, setAcitive] = useState(false)
-  function handleActive() {
+  let [isIndex, setIndex] = useState('')
+  function handleActive(index) {
     setAcitive(!isAcitive)
+    setIndex(index)
   }
   return (
     <div className='listVideo'>
@@ -29,8 +31,11 @@ export default function listVideo(props) {
                   <i className='iconfont icon-bofang'></i>
                   <img src={item.data.content.data.cover.detail} alt="" />
                 </div>
-                <p className={isAcitive ? '' : 'isActive'}>{item.data.content.data.description}</p>
-                <h5 onClick={handleActive}>{isAcitive ? '收起' : '展开'}</h5>
+                <p className={isAcitive && index === isIndex ? '' : 'isActive'}>{item.data.content.data.description}</p>
+                {
+                  item.data.content.data.description.length > 55 ? <h5 onClick={() => handleActive(index)}>{isAcitive && index === isIndex ? '收起' : '展开'}</h5> : ''
+                }
+
               </div>
               <div className="listVideo-bottom">
                 <div style={{ display: 'flex' }}>

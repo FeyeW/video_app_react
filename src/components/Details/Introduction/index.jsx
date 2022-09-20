@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import './index.less'
 
 import VideoRe from './videoRe'
@@ -25,15 +25,19 @@ export default function Introduction(props) {
           <p className='introduction-tags'>#{tags[0].name} #{tags[1].name}</p>
           : ''
         }
-        <p className={iconShow == false ? 'introduction-text isShow' : 'introduction-text'}>{description}</p>
-        <div className={iconShow == false ? 'showHidden ' : 'showHidden hidden'}></div>
-        <div className={iconShow == false ? 'showIcon up' : 'showIcon down'}>
-          <i onClick={() => handleHidden(!iconShow)}
-            className='iconfont icon-xiangxia'></i>
-          {/*           <i onClick={() => handleHidden(false)} className='iconfont icon-xiangshang'></i> */}
+        <div>
+          <p className={iconShow == false ? 'introduction-text isShow' : 'introduction-text'}>{description}
+          </p>
+          {
+            description.length > 95 ?
+              <div className={iconShow == false ? 'showIcon up' : 'showIcon down'}>
+                <i onClick={() => handleHidden(!iconShow)}
+                  className='iconfont icon-xiangxia'></i>
+              </div> : ''
+          }
         </div>
 
-
+        <div className={iconShow == false ? 'showHidden ' : 'showHidden hidden'} style={{ height: '1rem' }}></div>
       </div>
       <div className='introduction-icon'>
         <div>
