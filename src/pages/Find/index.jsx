@@ -1,11 +1,14 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import './index.less'
 
+
 import { getClass } from '../../api'
 import Footer from '../../components/Footer'
+import { useNavigate } from 'react-router-dom'
 
 
 export default function Find() {
+  const navigate = useNavigate()
   let [tabList, setTab] = useState([])
   let iconList = [
     {
@@ -39,12 +42,11 @@ export default function Find() {
     setTab(dataList.map((item, index) => {
       return { ...item, ...iconList[index] }
     }))
-    let List = new Map()
-    console.log(dataList.map((item, index) => {
-      return { ...item, ...iconList[index] }
-    }))
-  }
 
+  }
+  function focus() {
+    navigate('/search')
+  }
   useEffect(() => {
     getdata()
     return () => {
@@ -54,7 +56,7 @@ export default function Find() {
   return (
     <div className='Find'>
       <div className="Find-header">
-        <input type="text" placeholder='搜索视频，作者，用户及标签' />
+        <input onFocus={focus} type="text" placeholder='搜索视频，作者，用户及标签' />
         <i className='iconfont icon-xiaoxi'></i>
       </div>
       <div className="Find-class">

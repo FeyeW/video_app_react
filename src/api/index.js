@@ -30,7 +30,11 @@ export function getSquare() {
 export function getClass() {
     return request.get(`/v5/index/tab/list`)
 }
-
+//获取搜索关键词
+export function getHotTexts()
+{
+    return request.get(`/v3/queries/hot`)
+}
 
 
 
