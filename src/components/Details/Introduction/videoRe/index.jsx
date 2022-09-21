@@ -6,29 +6,18 @@ import { getTime } from '../../../../ulits'
 import './index.less'
 
 import { useRecoilValue, useSetRecoilState } from "recoil"
-import { videoState } from '../../../../Recoil/appState'
+import { classState } from '../../../../Recoil/appState'
 
 export default function videoRe(props) {
-  const navigate = useNavigate()
-  const { recommentCard } = props
+  const { handleClassDetail } = props
 
-  let getDetails = useRecoilValue(videoState)
-
+  let recommentCard = useRecoilValue(classState)
 
 
-  let handlePlay = (index) => {
-    navigate('/details',
-      {
-        replace: true,
-        state: {
-          index: index
-        }
-      }
-    )
-  }
-  
+
+
   useEffect(() => {
-
+    console.log(props)
     return () => {
     };
   }, []);
@@ -52,7 +41,7 @@ export default function videoRe(props) {
               </div>
               <div className="video-content">
                 <img src={item.data.cover.detail} />
-                <i onClick={() => handlePlay(index)} className='iconfont icon-bofang'></i>
+                <i onClick={() => handleClassDetail(index)} className='iconfont icon-bofang'></i>
               </div>
             </Fragment>
           )

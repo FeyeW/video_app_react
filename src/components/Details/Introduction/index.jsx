@@ -4,8 +4,8 @@ import './index.less'
 import VideoRe from './videoRe'
 
 export default function Introduction(props) {
-  //  console.log(props)
-  let { title, description, consumption, tags, recommentCard } = props
+
+  let { title, description, consumption, tags, handleClassDetail } = props
 
   let [iconShow, setShow] = useState(false)
   function handleHidden(value) {
@@ -63,7 +63,7 @@ export default function Introduction(props) {
       </div>
       <hr />
       <div className="introduction-extend">
-        <VideoRe recommentCard={recommentCard} />
+        <VideoRe handleClassDetail={handleClassDetail} />
       </div>
     </div>
   )
