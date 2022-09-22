@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './index.less'
 
 import { NavLink, Outlet } from 'react-router-dom';
@@ -16,7 +16,7 @@ export default function Home() {
   return (
     <div className='Home'>
       <div className="header">
-        <NavLink to=""><i className='iconfont icon-jiahao'></i></NavLink>
+        <NavLink to=""><i>qepetizer</i></NavLink>
         <NavLink className={getActive} to="recommend">推荐</NavLink>
         <NavLink className={getActive} to="attention">关注</NavLink>
         <NavLink className={getActive} to="texts">日报</NavLink>
@@ -26,6 +26,6 @@ export default function Home() {
         {<Outlet />}
       </div>
       <Footer />
-    </div>
+    </div >
   )
 }

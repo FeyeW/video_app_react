@@ -9,7 +9,7 @@ import Introduction from '../../components/Details/Introduction'
 
 //useRecoilValue:使用值而不需要对值进行修改
 import { useRecoilValue, useRecoilState } from "recoil"
-import { videoState, classState } from '../../Recoil/appState'
+import { videoState, classState, classIndexState } from '../../Recoil/appState'
 
 import { useLocation } from 'react-router-dom'
 import { Fragment } from 'react';
@@ -23,25 +23,22 @@ export default function Details() {
   //推荐页拿过来的index
   const { state: { index } } = useLocation()
   //类似页拿过来的id（子传父）
-  let handleClassDetail = (index) => {
-    console.log(index)
+  let [classIndex, setClassIndex] = useState('')
+
+  let handleClassDetail = async (index) => {
+    setClassIndex(index)
+    //获取推荐页视频的类似视频
+    let res = await getVideoClass(getClassDetails[index].data.id)
+    let videoData = res.data.itemList.filter((item, index) => {
+      return item.type !== 'textCard' && index < 6
+    })
+    setClassDetails(videoData)
+
   }
 
   //获取元素的dom操作
   const player = useRef()
 
-  //获取类似视频
-  async function getClass() {
-    let res = await getVideoClass(getDetails[index].data.header.id)
-    console.log(res.data.itemList)
-    let videoData = res.data.itemList.filter((item, index) => {
-      return item.type !== 'textCard' && index < 7
-    })
-
-    setClassDetails(videoData)
-    console.log(getClassDetails)
-
-  }
 
   //激活样式
   let [isActive, setActive] = useState(true)
@@ -87,7 +84,7 @@ export default function Details() {
 
 
   useEffect(() => {
-    getClass()
+
     return () => {
 
     };
@@ -100,14 +97,24 @@ export default function Details() {
           <i onClick={() => { navigate(-1) }} className='iconfont icon-fanhui'></i>
           <div className='top-author'>
             {
-              index < 10 ?
+              classIndex === '' ?
                 <Fragment>
-                  <img src={getDetails[index].data.content.data.author.icon} alt="" />
-                  <p>{getDetails[index].data.content.data.author.name}</p>
+                  {
+                    getDetails[index].type === 'videoSmallCard' ?
+                      <Fragment>
+                        <img src={getDetails[index].data.author.icon} alt="" />
+                        <p>{getDetails[index].data.author.name}</p>
+                      </Fragment> :
+                      <Fragment>
+                        <img src={getDetails[index].data.content.data.author.icon} alt="" />
+                        <p>{getDetails[index].data.content.data.author.name}</p>
+                      </Fragment>
+                  }
+
                 </Fragment> :
                 <Fragment>
-                  <img src={getDetails[index].data.author.icon} alt="" />
-                  <p>{getDetails[index].data.author.name}</p>
+                  <img src={getClassDetails[classIndex].data.author.icon} alt="" />
+                  <p>{getClassDetails[classIndex].data.author.name}</p>
                 </Fragment>
             }
 
@@ -126,8 +133,16 @@ export default function Details() {
             }
           </div>
           <video ref={player} controls autoPlay width='100%' loop>
-            <source onClick={focus} src={index < 10 ? getDetails[index].data.content.data.playUrl : getDetails[index].data.playUrl}
-              type="video/webm" />
+            <Fragment>
+              {
+                getDetails[index].type !== 'videoSmallCard' ?
+                  <source onClick={focus} src={classIndex === '' ? getDetails[index].data.content.data.playUrl : getClassDetails[classIndex].data.playUrl}
+                    type="video/webm" /> :
+                  <source onClick={focus} src={classIndex === '' ? getDetails[index].data.playUrl : getClassDetails[classIndex].data.playUrl}
+                    type="video/webm" />
+              }
+            </Fragment>
+
           </video>
         </div>
 
@@ -139,16 +154,48 @@ export default function Details() {
       </div>
       <Fragment>
         {
-          isActive ? <Introduction
-            title={index < 10 ? getDetails[index].data.content.data.title : getDetails[index].data.title}
-            description={index < 10 ? getDetails[index].data.content.data.description : getDetails[index].data.description}
-            consumption={index < 10 ? getDetails[index].data.content.data.consumption : getDetails[index].data.consumption}
-            tags={index < 10 ? getDetails[index].data.content.data.tags : getDetails[index].data.tags}
-            collected={index < 10 ? getDetails[index].data.content.data.collected : getDetails[index].data.collected}
-            handleClassDetail={handleClassDetail}
-          /> : <Comment consumption={index < 10 ? getDetails[index].data.content.data.consumption : getDetails[index].data.consumption} />
+          getDetails[index].type !== 'videoSmallCard' ?
+            <Fragment>
+              {
+                isActive ?
+                  <Introduction
+                    title={
+                      classIndex === '' ? getDetails[index].data.content.data.title : getClassDetails[classIndex].data.title
+                    }
+                    description={classIndex === '' ? getDetails[index].data.content.data.description : getClassDetails[classIndex].data.description}
+                    consumption={classIndex === '' ? getDetails[index].data.content.data.consumption : getClassDetails[classIndex].data.consumption}
+                    tags={classIndex === '' ? getDetails[index].data.content.data.tags : getClassDetails[classIndex].data.tags}
+                    collected={classIndex === '' ? getDetails[index].data.content.data.collected : getClassDetails[classIndex].data.collected}
+                    handleClassDetail={handleClassDetail}
+                  />
+
+                  :
+                  <Comment consumption={classIndex === '' ? getDetails[index].data.content.data.consumption : getClassDetails[classIndex].data.consumption} />
+              }
+            </Fragment>
+            :
+            <Fragment>
+              {
+                isActive ?
+                  <Introduction
+                    title={
+                      classIndex === '' ? getDetails[index].data.title : getClassDetails[classIndex].data.title
+                    }
+                    description={classIndex === '' ? getDetails[index].data.description : getClassDetails[classIndex].data.description}
+                    consumption={classIndex === '' ? getDetails[index].data.consumption : getClassDetails[classIndex].data.consumption}
+                    tags={classIndex === '' ? getDetails[index].data.tags : getClassDetails[classIndex].data.tags}
+                    collected={classIndex === '' ? getDetails[index].data.collected : getClassDetails[classIndex].data.collected}
+                    handleClassDetail={handleClassDetail}
+                  />
+
+                  :
+                  <Comment consumption={classIndex === '' ? getDetails[index].data.consumption : getClassDetails[classIndex].data.consumption} />
+              }
+            </Fragment>
         }
+
       </Fragment>
+
 
     </div>
   )

@@ -4,7 +4,7 @@ import './index.less'
 import { getTime } from '../../ulits'
 
 export default function listRe(props) {
-  const { recommentEye, name } = props
+  const { recommentEye, name, handlePlay } = props
   const navigate = useNavigate()
 
   //获取元素的dom操作
@@ -13,16 +13,8 @@ export default function listRe(props) {
   let [Icon, setIcon] = useState(false)
 
   //点击icon播放
-  let handlePlay = (index) => {
-    //函数式路由跳转
-    navigate('/details',
-      {
-        replace: true,
-        state: {
-          index: index
-        }
-      }
-    )
+  let handleRePlay = (index) => {
+    handlePlay(index)
   }
 
   //监听video播放
@@ -56,7 +48,7 @@ export default function listRe(props) {
                   {
                     Icon === true ? '' :
                       <Fragment>
-                        <i onClick={() => handlePlay(index)} className='iconfont icon-bofang inconVideo'></i>
+                        <i onClick={() => handleRePlay(index)} className='iconfont icon-bofang inconVideo'></i>
                         <div className='iconMain'><p>开眼</p><p>精选</p></div>
                       </Fragment>
                   }
