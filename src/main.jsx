@@ -12,12 +12,18 @@ import {
 } from 'recoil';
 import './index.css'
 
+
+import { Spin } from 'antd';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <RecoilRoot>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <React.Suspense fallback={<div className="example">
+        <Spin />
+      </div>}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </React.Suspense>
     </RecoilRoot>
   </React.StrictMode>
 )
