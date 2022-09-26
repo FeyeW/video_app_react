@@ -5,14 +5,13 @@ import VideoRe from './videoRe'
 
 export default function Introduction(props) {
 
-  let { title, description, consumption, tags, handleClassDetail } = props
-
+  let { handleClassDetail } = props
+  let { title, description, consumption, tags } = props.listData
   let [iconShow, setShow] = useState(false)
   function handleHidden(value) {
     setShow(value)
   }
   useEffect(() => {
-
     return () => {
 
     };
@@ -37,7 +36,7 @@ export default function Introduction(props) {
           }
         </div>
 
-        <div className={iconShow == false ? 'showHidden ' : 'showHidden hidden'} style={{ height: '1rem' }}></div>
+        <div className={iconShow == false ? 'showHidden  ' : 'showHidden hidden'} style={{ height: '1rem' }}></div>
       </div>
       <div className='introduction-icon'>
         <div>

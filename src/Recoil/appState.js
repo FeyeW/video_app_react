@@ -5,7 +5,7 @@ import { recoilPersist } from 'recoil-persist'
 const { persistAtom } = recoilPersist()
 
 import { getVideoClass } from '../api'
-//设置原始数据，atom派生出其他数据key-value形式存在
+//视频推荐拿到的推荐列表
 export const videoState = atom(
   {
     key: "videoState",
@@ -13,6 +13,7 @@ export const videoState = atom(
     effects_UNSTABLE: [persistAtom],
   }
 );
+//点击推荐列表拿到的类似列表
 export const classState = atom(
   {
     key: "classState",
@@ -20,9 +21,10 @@ export const classState = atom(
     effects_UNSTABLE: [persistAtom],
   }
 );
-export const classIndexState = atom(
+//点击视频列表拿到的视频详情
+export const clickVideoState = atom(
   {
-    key: "classIndex",
+    key: "clickVideoState",
     default: '',
     effects_UNSTABLE: [persistAtom],
   }

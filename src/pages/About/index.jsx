@@ -3,6 +3,8 @@ import React from 'react'
 import './index.less'
 import Footer from '../../components/Footer'
 
+import { Empty } from 'antd';
+
 export default function About() {
   return (
     <div className='About'>
@@ -38,7 +40,7 @@ export default function About() {
           <button>观看记录</button>
         </div>
         <div className="content-middle">
-          <i className='iconfont icon-chazhaoyonghu'></i>
+        <Empty />
         </div>
       </div>
       <Footer />

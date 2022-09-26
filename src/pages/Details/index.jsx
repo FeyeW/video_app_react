@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState, useRef, useLayoutEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import './index.less'
 import { getVideoClass } from '../../api'
@@ -9,7 +9,7 @@ import Introduction from '../../components/Details/Introduction'
 
 //useRecoilValue:使用值而不需要对值进行修改
 import { useRecoilValue, useRecoilState } from "recoil"
-import { videoState, classState, classIndexState } from '../../Recoil/appState'
+import { videoState, classState, clickVideoState } from '../../Recoil/appState'
 
 import { useLocation } from 'react-router-dom'
 import { Fragment } from 'react';
@@ -19,20 +19,23 @@ export default function Details() {
 
   let getDetails = useRecoilValue(videoState)
   let [getClassDetails, setClassDetails] = useRecoilState(classState)
+  let [getClickVideoState, setClickVideoState] = useRecoilState(clickVideoState)
+
+
 
   //推荐页拿过来的index
   const { state: { index } } = useLocation()
-  //类似页拿过来的id（子传父）
-  let [classIndex, setClassIndex] = useState('')
 
   let handleClassDetail = async (index) => {
-    setClassIndex(index)
     //获取推荐页视频的类似视频
     let res = await getVideoClass(getClassDetails[index].data.id)
     let videoData = res.data.itemList.filter((item, index) => {
       return item.type !== 'textCard' && index < 6
     })
     setClassDetails(videoData)
+    //获取点击的视频详情
+    setClickVideoState(getClassDetails[index])
+
 
   }
 
@@ -82,11 +85,10 @@ export default function Details() {
   }
 
 
-
   useEffect(() => {
 
     return () => {
-
+      setClickVideoState('')
     };
   }, []);
 
@@ -97,7 +99,7 @@ export default function Details() {
           <i onClick={() => { navigate(-1) }} className='iconfont icon-fanhui'></i>
           <div className='top-author'>
             {
-              classIndex === '' ?
+              getClickVideoState === '' ?
                 <Fragment>
                   {
                     getDetails[index].type === 'videoSmallCard' ?
@@ -113,8 +115,8 @@ export default function Details() {
 
                 </Fragment> :
                 <Fragment>
-                  <img src={getClassDetails[classIndex].data.author.icon} alt="" />
-                  <p>{getClassDetails[classIndex].data.author.name}</p>
+                  <img src={getClickVideoState.data.author.icon} alt="" />
+                  <p>{getClickVideoState.data.author.name}</p>
                 </Fragment>
             }
 
@@ -136,9 +138,9 @@ export default function Details() {
             <Fragment>
               {
                 getDetails[index].type !== 'videoSmallCard' ?
-                  <source onClick={focus} src={classIndex === '' ? getDetails[index].data.content.data.playUrl : getClassDetails[classIndex].data.playUrl}
+                  <source onClick={focus} src={getClickVideoState === '' ? getDetails[index].data.content.data.playUrl : getClickVideoState.data.playUrl}
                     type="video/webm" /> :
-                  <source onClick={focus} src={classIndex === '' ? getDetails[index].data.playUrl : getClassDetails[classIndex].data.playUrl}
+                  <source onClick={focus} src={getClickVideoState === '' ? getDetails[index].data.playUrl : getClickVideoState.data.playUrl}
                     type="video/webm" />
               }
             </Fragment>
@@ -152,47 +154,63 @@ export default function Details() {
         </div>
         <hr />
       </div>
+      {/* 先判断激活的是简介还是评论组件，再判断推荐页面的是视频列表还是卡片列表 */}
       <Fragment>
         {
-          getDetails[index].type !== 'videoSmallCard' ?
-            <Fragment>
-              {
-                isActive ?
-                  <Introduction
-                    title={
-                      classIndex === '' ? getDetails[index].data.content.data.title : getClassDetails[classIndex].data.title
-                    }
-                    description={classIndex === '' ? getDetails[index].data.content.data.description : getClassDetails[classIndex].data.description}
-                    consumption={classIndex === '' ? getDetails[index].data.content.data.consumption : getClassDetails[classIndex].data.consumption}
-                    tags={classIndex === '' ? getDetails[index].data.content.data.tags : getClassDetails[classIndex].data.tags}
-                    collected={classIndex === '' ? getDetails[index].data.content.data.collected : getClassDetails[classIndex].data.collected}
-                    handleClassDetail={handleClassDetail}
-                  />
-
-                  :
-                  <Comment consumption={classIndex === '' ? getDetails[index].data.content.data.consumption : getClassDetails[classIndex].data.consumption} />
-              }
-            </Fragment>
-            :
-            <Fragment>
-              {
-                isActive ?
-                  <Introduction
-                    title={
-                      classIndex === '' ? getDetails[index].data.title : getClassDetails[classIndex].data.title
-                    }
-                    description={classIndex === '' ? getDetails[index].data.description : getClassDetails[classIndex].data.description}
-                    consumption={classIndex === '' ? getDetails[index].data.consumption : getClassDetails[classIndex].data.consumption}
-                    tags={classIndex === '' ? getDetails[index].data.tags : getClassDetails[classIndex].data.tags}
-                    collected={classIndex === '' ? getDetails[index].data.collected : getClassDetails[classIndex].data.collected}
-                    handleClassDetail={handleClassDetail}
-                  />
-
-                  :
-                  <Comment consumption={classIndex === '' ? getDetails[index].data.consumption : getClassDetails[classIndex].data.consumption} />
-              }
-            </Fragment>
+          isActive ?
+            <Fragment>            {
+              getDetails[index].type !== 'videoSmallCard' ?
+                <Fragment>
+                  {
+                    <Introduction
+                      listData={
+                        getClickVideoState === '' ? {
+                          title: getDetails[index].data.content.data.title,
+                          description: getDetails[index].data.content.data.description,
+                          consumption: getDetails[index].data.content.data.consumption,
+                          tags: getDetails[index].data.content.data.tags,
+                          collected: getDetails[index].data.content.data.collected
+                        } :
+                          {
+                            title: getClickVideoState.data.title,
+                            description: getClickVideoState.data.description,
+                            consumption: getClickVideoState.data.consumption,
+                            tags: getClickVideoState.data.tags,
+                            collected: getClickVideoState.data.collected
+                          }
+                      }
+                      handleClassDetail={handleClassDetail}
+                    />
+                  }
+                </Fragment>
+                :
+                <Fragment>
+                  {
+                    <Introduction
+                      listData={
+                        getClickVideoState === '' ? {
+                          title: getDetails[index].data.title,
+                          description: getDetails[index].data.description,
+                          consumption: getDetails[index].data.consumption,
+                          tags: getDetails[index].data.tags,
+                          collected: getDetails[index].data.collected
+                        } :
+                          {
+                            title: getClickVideoState.data.title,
+                            description: getClickVideoState.data.description,
+                            consumption: getClickVideoState.data.consumption,
+                            tags: getClickVideoState.data.tags,
+                            collected: getClickVideoState.data.collected
+                          }
+                      }
+                      handleClassDetail={handleClassDetail}
+                    />
+                  }
+                </Fragment>
+            }</Fragment>
+            : <Comment consumption={getClickVideoState === '' ? getDetails[index].data.consumption : getClickVideoState.data.consumption} />
         }
+
 
       </Fragment>
 
