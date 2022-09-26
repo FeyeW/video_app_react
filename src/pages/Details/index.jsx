@@ -134,18 +134,15 @@ export default function Details() {
 
             }
           </div>
-          <video ref={player} controls autoPlay width='100%' loop>
-            <Fragment>
-              {
-                getDetails[index].type !== 'videoSmallCard' ?
-                  <source onClick={focus} src={getClickVideoState === '' ? getDetails[index].data.content.data.playUrl : getClickVideoState.data.playUrl}
-                    type="video/webm" /> :
-                  <source onClick={focus} src={getClickVideoState === '' ? getDetails[index].data.playUrl : getClickVideoState.data.playUrl}
-                    type="video/webm" />
-              }
-            </Fragment>
-
-          </video>
+          <Fragment>
+            {
+              getDetails[index].type !== 'videoSmallCard' ?
+                <video ref={player} controls autoPlay width='100%' loop onClick={focus} src={getClickVideoState === '' ? getDetails[index].data.content.data.playUrl : getClickVideoState.data.playUrl}
+                  type="video/webm" /> :
+                <video ref={player} controls autoPlay width='100%' loop onClick={focus} src={getClickVideoState === '' ? getDetails[index].data.playUrl : getClickVideoState.data.playUrl}
+                  type="video/webm" />
+            }
+          </Fragment>
         </div>
 
         <div className="Details-bottom" >

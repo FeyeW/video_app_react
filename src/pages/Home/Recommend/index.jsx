@@ -33,6 +33,7 @@ export default function Recomment() {
   //获取数据
   async function funData() {
     let resRe = await getRecommentList()
+    console.log(resRe)
     setEye(resRe.data.itemList[0].data.itemList)
 
     let resCa = await getCardList()
