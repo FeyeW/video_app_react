@@ -5,6 +5,7 @@ import { handleTime } from '../../utils'
 
 export default function listVideo(props) {
   const { listData, name } = props
+
   let [isAcitive, setAcitive] = useState(false)
   let [isIndex, setIndex] = useState('')
   function handleActive(index) {
@@ -35,7 +36,6 @@ export default function listVideo(props) {
                 {
                   item.data.content.data.description.length > 55 ? <h5 onClick={() => handleActive(index)}>{isAcitive && index === isIndex ? '收起' : '展开'}</h5> : ''
                 }
-
               </div>
               <div className="listVideo-bottom">
                 <div style={{ display: 'flex' }}>

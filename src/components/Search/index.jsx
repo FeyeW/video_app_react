@@ -26,9 +26,9 @@ export default function Search() {
 
   let [filterCard, setCard] = useState([])
   let time = ''
+  
   function change() {
     clearTimeout(time)
-    console.log(videoContent.current.value)
     if (videoContent.current.value !== '') {
       time = setTimeout(async () => {
         let res = await getSearch(videoContent.current.value)

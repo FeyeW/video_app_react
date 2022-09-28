@@ -35,16 +35,14 @@ export default function listRe(props) {
               key={index}
             >
               {/* 判断是否为第一个视频 */}
-              {index === 0 ?
-                <div >
+              {index === 0 && name !== 'Texts' ?
+                <Fragment>
                   {
-                    name == 'Texts' ? <img src={item.data.content.data.cover.detail} /> :
-                      <video ref={player} controls autoPlay muted width="100%" onPlay={play} onPause={pause} >
-                        <source src={recommentEye[0].data.content.data.playUrl}
-                          type="video/webm" />
-                      </video>
+                    <video ref={player} controls autoPlay muted width="100%" onPlay={play} onPause={pause} >
+                      <source src={recommentEye[0].data.content.data.playUrl}
+                        type="video/webm" />
+                    </video>
                   }
-
                   {
                     Icon === true ? '' :
                       <Fragment>
@@ -52,13 +50,12 @@ export default function listRe(props) {
                         <div className='iconMain'><p>开眼</p><p>精选</p></div>
                       </Fragment>
                   }
-                </div> :
-                <div>
+                </Fragment> :
+                <Fragment>
                   <img src={item.data.content.data.cover.detail} />
                   <i onClick={() => handlePlay(index)} className='iconfont icon-bofang inconVideo'></i>
                   <div className='iconMain'><p>开眼</p><p>精选</p></div>
-                </div>
-
+                </Fragment>
               }
               <div className="main-footer">
                 <div className="footer-left">

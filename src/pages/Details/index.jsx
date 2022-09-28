@@ -81,7 +81,6 @@ export default function Details() {
 
   function handleClick() {
     setIcon(true)
-    console.log(isPlay)
   }
 
 

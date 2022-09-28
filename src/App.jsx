@@ -9,7 +9,7 @@ import { NavLink, useRoutes } from 'react-router-dom';
 import route from '../src/route'
 
 
-export default function App() {
+export default React.memo(function App() {
 
   const routes = useRoutes(route)
 
@@ -19,3 +19,4 @@ export default function App() {
     </div>
   )
 }
+)

@@ -39,9 +39,12 @@
 
     .Square-card {
         padding: 1rem;
-        display: grid;
-        grid-gap: 1rem .5rem;
-        padding-bottom: 8.5rem;
+        display: flex;
+        flex-direction: column;
+
+        div {
+            margin-bottom: .5rem;
+        }
 
         :nth-child(1) {
             img {

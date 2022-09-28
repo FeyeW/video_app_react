@@ -5,7 +5,7 @@ import VideoRe from './videoRe'
 
 export default function Introduction(props) {
 
-  let { handleClassDetail } = props
+  const { handleClassDetail } = props
   let { title, description, consumption, tags } = props.listData
   let [iconShow, setShow] = useState(false)
   function handleHidden(value) {
