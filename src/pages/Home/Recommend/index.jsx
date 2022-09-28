@@ -3,14 +3,14 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import './index.less'
 
 import { getRecommentList, getCardList, getVideoClass } from '../../../api'
-import { getTime } from '../../../ulits'
+import { getTime } from '../../../utils'
 
 /* 
 1.useRecoilState拿到值并拿来设置数据（类似useState)
 2.useSetRecoilState对值进行设置，而又不进行展示
 */
 import { useRecoilState, useSetRecoilState } from "recoil"
-import { videoState, classState } from '../../../Recoil/appState'
+import { videoState, classState } from '../../../recoil/appState'
 
 import ListRe from '../../../components/listRe'
 

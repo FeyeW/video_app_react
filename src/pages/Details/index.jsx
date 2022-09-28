@@ -9,7 +9,7 @@ import Introduction from '../../components/Details/Introduction'
 
 //useRecoilValue:使用值而不需要对值进行修改
 import { useRecoilValue, useRecoilState } from "recoil"
-import { videoState, classState, clickVideoState } from '../../Recoil/appState'
+import { videoState, classState, clickVideoState } from '../../recoil/appState'
 
 import { useLocation } from 'react-router-dom'
 import { Fragment } from 'react';

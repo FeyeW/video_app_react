@@ -2,11 +2,11 @@ import React, { useEffect, useState, Fragment } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 
-import { getTime } from '../../../../ulits'
+import { getTime } from '../../../../utils'
 import './index.less'
 
 import { useRecoilValue, useSetRecoilState } from "recoil"
-import { classState } from '../../../../Recoil/appState'
+import { classState } from '../../../../recoil/appState'
 
 export default function videoRe(props) {
   const { handleClassDetail } = props

@@ -13,9 +13,6 @@ export default function App() {
 
   const routes = useRoutes(route)
 
-
-
-
   return (
     <div className='App'>
       {routes}

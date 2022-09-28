@@ -26,6 +26,8 @@ export default function Home() {
         {<Outlet />}
       </div>
       <Footer />
+      <Footer />
+      <Footer />
     </div >
   )
 }

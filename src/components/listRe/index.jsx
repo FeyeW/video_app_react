@@ -1,7 +1,7 @@
 import React, { useEffect, useState, Fragment, useRef } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import './index.less'
-import { getTime } from '../../ulits'
+import { getTime } from '../../utils'
 
 export default function listRe(props) {
   const { recommentEye, name, handlePlay } = props

@@ -1,7 +1,6 @@
 import React, { useEffect, useState, Fragment } from 'react'
 import './index.less'
 import { getAttention } from '../../../api'
-import { handleTime } from '../../../ulits'
 import ListVideo from '../../../components/listVideo'
 
 export default function Attention() {

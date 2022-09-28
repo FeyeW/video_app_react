@@ -1,10 +1,10 @@
-import React, { lazy, Suspense } from 'react';
+import React  from 'react';
 //路由重定位
 import { Navigate } from 'react-router-dom'
 
 //Home组件和其子组件
-const Home = lazy(() => import('../pages/Home'))
-const Recommend = lazy(() => import('../pages/Home/Recommend'))
+import Home from  '../pages/Home'
+import Recommend from '../pages/Home/Recommend'
 import Texts from '../pages/Home/Texts'
 import Attention from '../pages/Home/Attention'
 

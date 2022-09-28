@@ -1,7 +1,7 @@
 import React, { useEffect, useState, Fragment } from 'react'
 import './index.less'
 import { getAttention } from '../../api'
-import { handleTime } from '../../ulits'
+import { handleTime } from '../../utils'
 
 export default function listVideo(props) {
   const { listData, name } = props
