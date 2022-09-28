@@ -2,7 +2,7 @@
  - 克隆本项目到本地
     `git clone git@github.com:FeyeW/video_app_react.git`
  - 后台API地址（再次感谢大佬提供的开源在线API🎉）
-    [GitHub指路🙋]([https://github.com/1136535305/Eyepetizer/wiki/%E5%BC%80%E7%9C%BC-API-%E6%8E%A5%E5%8F%A3%E5%88%86%E6%9E%90])
+    [GitHub指路🙋](https://github.com/1136535305/Eyepetizer/wiki/%E5%BC%80%E7%9C%BC-API-%E6%8E%A5%E5%8F%A3%E5%88%86%E6%9E%90)
  - 运行
     `npm run dev`
 # 项目简介
